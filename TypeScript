@@ -1,0 +1,205 @@
+TypeScript
+
+1.TypeScript is a super set of javascript.
+2.Transpile to javascript that browser can understand.
+3.Install typescript
+	npm install -g typescript
+	tsc --version
+
+
+tsc *.ts --target ES5 & node main.js
+
+Two ways to initialize variable 
+	var number = 1; (scope to nearest function)
+	let number = 1; (scoped to nearest block)
+
+Good coding practice use let keyword during coding and during compile time it will compile back to var keyword.
+
+Typescript does not allow type change from number to char
+
+let a: number; // to specify a is a number
+let b: boolean;
+let c: string;
+let d: any;
+let e: number[] = [1,2,3];
+let f: any[] = [1, true, 'a', false];
+
+enum Color {Red = 0, Green = 1, Blue = 2};
+
+
+TYPE ASSERTION 
+let message;
+message = 'abc';
+/*
+ *  It is just to specify the compiler at compile time that this is string type.
+ */
+let endsWithC = (<string>message).endsWith('c');
+let alternativeWay = (message as string).endsWith('c');
+
+ARROW FUNCTION
+
+let doLog = (message) => console.log(message);
+
+let doLog = () => console.log();
+
+let doLog = (message) => {
+	console.log(message);
+}
+
+
+INTERFACE 
+
+interface Point {
+	x: number;
+	y: number;
+}
+
+let drawPoint = (point: Point) => {
+	//..
+}
+
+drawPoint({
+	x: 1;
+	y: 2
+});
+
+
+
+CLASS
+
+class Point {
+	x: number;
+	y: number;
+
+	draw() {
+		//...
+	}
+	getDistance(another: Point0) {
+		//...	
+	}
+}
+
+let point = new Point();
+
+CONSTRUCTOR
+
+//? for optional argument;
+
+class Point {
+	x: number;
+	y: number;
+	
+	constructor(x?:number, y?: number) {
+		this.x = x;
+		this.y = y;
+	}
+
+	draw() {
+		//...
+	}
+	getDistance(another: Point0) {
+		//...	
+	}
+}
+
+let point = new Point(1,2);
+
+ACCESS MODIFIERS
+
+.public //By Default
+.private
+.protected
+
+class Point {
+	private x: number;
+	private y: number;
+	
+	constructor(x?:number, y?: number){
+		this.x = x;
+		this.y = y;
+	}
+
+	draw() {
+		//...
+	}
+	getDistance(another: Point0) {
+		//...	
+	}
+}
+
+
+ACCESS MODIFIERS WITH CONSTRUCTOR PARAMETERS
+
+class Point {
+	
+	constructor(private x?:number, private y?: number) {
+	}
+
+	draw() {
+		//...
+	}
+	getDistance(another: Point0) {
+		//...	
+	}
+}
+
+PROPERTIES
+
+class Point {
+	
+	constructor(private x?:number, private y?: number) {
+	}
+
+	draw() {
+		//...
+	}
+	
+	get X() {
+		return this.x;
+	}
+	
+	set X(value) {
+		if (value < 0)
+			throw new Error('value cannot be less than 0.'):
+		this.x = value;
+	}
+}
+
+let point = new Point(1,2);
+let x = point.X;
+point.X = 10;
+point.draw();
+
+
+MODULE
+
+
+//file 1
+export class Point {
+	
+	constructor(private x?:number, private y?: number) {
+	}
+
+	draw() {
+		//...
+	}
+	
+	get X() {
+		return this.x;
+	}
+	
+	set X(value) {
+		if (value < 0)
+			throw new Error('value cannot be less than 0.'):
+		this.x = value;
+	}
+}
+
+//file 2
+import { Point } from './point';
+
+let point = new Point(1,2);
+let x = point.X;
+point.X = 10;
+point.draw();
+
