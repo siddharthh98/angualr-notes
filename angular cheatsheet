@@ -1,0 +1,26 @@
+<!--Install nodejs Latest version-->
+
+<!--Check git version-->
+	1.git --version
+
+<!--Install angular/cli-->
+	1.npm install -g @angular/cli
+
+<!--Check version-->
+	1.ng --version
+
+ng new <file_name>
+
+e2e
+	-- end to end test
+
+node_modules
+	-- all third party libraries are stored here
+
+src
+	-- source folder
+		--app 
+		--modules
+		--assets
+			static files
+		--environments
