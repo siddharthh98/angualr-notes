@@ -27,6 +27,7 @@ let f: any[] = [1, true, 'a', false];
 enum Color {Red = 0, Green = 1, Blue = 2};
 
 
+//Hello World
 TYPE ASSERTION 
 let message;
 message = 'abc';
