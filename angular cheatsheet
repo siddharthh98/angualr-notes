@@ -24,3 +24,173 @@ src
 		--assets
 			static files
 		--environments
+
+Localhost
+	ng serve
+
+
+Components
+
+1. Each Website is divided into different components.
+2. Each component performs a specific task.
+3. Like in udemy.com we have navbar component and sidebar component and courses component and even in courses component is further sub-divided into different course component which has rating component as well.
+
+Step 1: Write component
+
+courses-form.component.ts
+
+import { Component } from '@angular/core';
+
+@Component({
+	selector: 'courses', // <div id='courses"> "#courses"
+	template: '<h2>Courses</h2>
+})
+export class CoursesComponent {
+	
+}
+
+Step 2: Register component
+
+-In app folder look four app.module.ts
+-Look for declarations
+-Add CoursesComponent
+
+Step 3: Add component to html file
+app.component.html
+
+Another way to generate a component is 
+ng g c course
+
+{{dynamic code}}
+
+DIRECTIVES 
+<li *ngFor="let course of courses">{{course}}</li>
+
+SERVICES
+Calling the logical
+courses.service.ts
+
+export class CoursesService {
+	getCourses() {
+		return ["course1","course2","course3"];
+	}
+}
+
+DEPENDENCY INJECTION
+
+
+constructor(service: CoursesService) {
+	this.courses = service.getCourses();
+}
+
+App.module 
+Providers:[register all dependency Injenction]
+
+Quick way to create a service 
+ng g s email
+
+ATTRIBUTE BINDING
+
+1.<h2>{{title}}</h2>
+2.<img [src] = "title"/>
+3.<table>
+	<tr>
+		<td [colspan]="colSpan"> //This will give error as colspan is not html property.
+	</tr>
+  </table>
+
+  <table>
+	<tr>
+		<td [attr.colspan]="colSpan"> //This will work.
+	</tr>
+  </table>
+
+ADDING BOOTSTRAP
+npm install bootstrap --save
+
+style.css
+	@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+
+
+CLASS BINDING                        targetClass
+<button class="btn btn-primary" [class.active]="isActve">Save</button>
+
+
+export CourseComponent {
+	isActive = true;
+}
+
+STYLE BINDING
+
+<button class="btn btn-primary" [style.backgroundColor] = "isActive?blue:white"[class.active]="isActve">Save</button>
+
+
+export CourseComponent {
+	isActive = true;
+}
+
+EVENT BINDING
+
+<button class="btn btn-primary" (click)="onSave()">Save</button>
+
+<button class="btn btn-primary" (click)="onSave($event)">Save</button>
+
+$event.stopPropogation() //to Stop event bubbling
+
+
+EVENT FILTER
+keyup.enter
+
+TEMPLATE VARIABLE
+
+<input #email (keyup.enter)="onKeyUp(email.value)"></input>
+
+TWO WAY BINDING
+
+<input [value]="email" (keyup.enter)="email = $event.target.value;onKeyUp()"></input>
+
+<input [(*value)]="email" (keyup.enter)="onKeyUp()"></input>
+
+import { FormsModule } from '@angular/forms';
+
+
+imports[
+FormsModule
+]
+
+
+PIPES
+
+{{ | uppercase}}
+
+{{ | lowercase}}
+
+{{ | number }}
+
+{{ | number:'1.1-1' }}
+
+{{ | currency: 'AUD":true(currency symbol)}}
+
+{{ | date: 'shortDate'}}
+
+CUSTOM PIPES
+ 
+{{|summary}}
+
+App file summary.pipes.ts
+
+import { Pipe, PipeTransform } from '@angular/core'
+
+@Pipe({
+	name: 'summary'
+})
+export class SummaryPipe implements PipeTransform {
+	transform(value: any, args?: any) {
+		logic	
+	}
+}
+
+
+Register this pipes
+In
+@NgModule
